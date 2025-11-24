@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+    --color-petbase-blue: #46c6bf;
+    --color-petbase-pink: #f8939a;
+    --color-petbase-teal: #26576e;;
+}
+
+html, body, #app {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
