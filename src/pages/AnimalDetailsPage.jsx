@@ -52,7 +52,7 @@ export default function AnimalDetails() {
           ← Vissza
         </button>
 
-        <div className="card shadow-lg p-6 bg-gray-800">
+        <div className="card shadow-lg p-6 bg-base-100">
           <div className="flex justify-between items-start mb-4">
             <h2 className="text-2xl font-bold">
               {animal.name}{" "}

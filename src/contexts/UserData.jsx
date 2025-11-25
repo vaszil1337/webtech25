@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getStoredUser, setStoredUser, clearStoredUser } from "../utils/storage";
+import { getStoredUser, setStoredUser, clearStoredUser } from "../utils/user";
 
 export const UserDataContext = createContext(null);
 

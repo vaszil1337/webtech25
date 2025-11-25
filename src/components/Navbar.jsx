@@ -18,7 +18,7 @@ export default function Navbar() {
             <div className="flex-1 flex items-center">
                 <div className="flex flex-row gap-2 items-center">
                     <img className="max-h-12" src="logo-plain.png" alt="Logó" />
-                    <a className="btn btn-ghost text-xl">PetBase</a>
+                    <a href="/" className="btn btn-ghost text-xl">PetBase</a>
                 </div>
             </div>
             <div className="flex-none">

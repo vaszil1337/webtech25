@@ -53,7 +53,7 @@ export default function LoginPage() {
                             <input
                                 className="input w-full border-petbase-teal text-base-content"
                                 type="text"
-                                placeholder="felhasznalonev"
+                                placeholder="felhasználónév"
                                 value={userInput}
                                 onChange={(e) => { setUserInput(e.target.value); setError(""); }}
                                 name="username"

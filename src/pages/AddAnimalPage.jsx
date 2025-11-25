@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAnimalsData } from "../contexts/Animals";
+import ErrorModal from "../components/ErrorModal";
 
 export default function AddAnimalPage() {
   const navigate = useNavigate();
@@ -17,6 +18,12 @@ export default function AddAnimalPage() {
     lastVaccinationDate: "",
     nextVaccinationDate: "",
     notes: "",
+  });
+
+  const [errorModal, setErrorModal] = useState({
+    open: false,
+    message: "",
+    title: "Hibás dátum",
   });
 
   useEffect(() => {
@@ -38,6 +45,34 @@ export default function AddAnimalPage() {
     const form = e.target;
     if (!form.checkValidity()) {
       form.reportValidity();
+      return;
+    }
+
+    const birthDate = new Date(formData.birthDate);
+    const lastVaccinationDate = new Date(formData.lastVaccinationDate);
+    const nextVaccinationDate = new Date(formData.nextVaccinationDate);
+
+    if (lastVaccinationDate < birthDate) {
+      setErrorModal({
+        open: true,
+        message: "Az előző oltás dátuma nem lehet korábbi, mint az állat születési ideje!"
+      });
+      return;
+    }
+
+    if (nextVaccinationDate < birthDate) {
+      setErrorModal({
+        open: true,
+        message: "A következő oltás dátuma nem lehet korábbi, mint az állat születési ideje!"
+      });
+      return;
+    }
+
+    if (nextVaccinationDate < lastVaccinationDate) {
+      setErrorModal({
+        open: true,
+        message: "A következő oltás dátuma nem lehet korábbi, mint az előző oltás dátuma!"
+      });
       return;
     }
 
@@ -162,6 +197,14 @@ export default function AddAnimalPage() {
             </form>
         </div>
       </div>
+
+      <ErrorModal
+        open={errorModal.open}
+        title={errorModal.title}
+        message={errorModal.message}
+        confirmText="Rendben"
+        onConfirm={() => setErrorModal({ open: false, message: "" })}
+      />
     </div>
   );
 }
